@@ -1,0 +1,55 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content">
+		<article>
+			<h3>電子契約書登録確認画面</h3>
+			<div class="update">
+				<div class="form">
+					<div class="label">顧客名：</div>
+					<div class="input" th:text="${customerName}"></div>
+				</div>
+				<div class="form">
+					<div class="label">売上金額：</div>
+					<div class="input" th:text="${contract.totalPrice}+円"></div>
+				</div>
+				</div>
+				
+				<form th:action="@{/contract/add/complete}">
+					<div class="form">
+						<div class="label"></div>
+						<div class="input">
+						<!-- 						    <input type="hidden" name="empId"  th:value="session.enp.empId" /> -->
+							<input type="hidden" name="empId" th:value="1" />
+							<input type="hidden" name="customerId" th:value="${contract.customerId}" />
+							<input type="hidden" name="totalPrice" th:value="${contract.totalPrice}" />
+							<input type="hidden" name="approval" th:value="0" />
+							<input type="hidden" name="deleteFlag" th:value="0" />
+							<input type="submit" value="登録" />
+						</div>
+					</div>
+				</form>
+				<form th:action="@{/contract/add/input}" method="post">
+					<div class="form">
+						<div class="label"></div>
+						<div class="input">
+						<!-- 						    <input type="hidden" name="empId"  th:value="session.enp.empId" /> -->
+							<input type="hidden" name="empId" th:value="1" />
+							<input type="hidden" name="customerId" th:value="${contract.customerId}" />
+							<input type="hidden" name="totalPrice" th:value="${contract.totalPrice}" />
+							<input type="hidden" name="approval" th:value="0" />
+							<input type="hidden" name="deleteFlag" th:value="0" />
+							<input type="submit" value="戻る" />
+						</div>
+					</div>
+				</form>
+		</article>
+	</div>
+</body>
+</html>

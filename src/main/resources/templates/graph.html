@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script type="text/javascript" th:src="@{js/graph/getEmpData.js}"></script>
+
+</head>
+<body class="list">
+
+
+	<div class="content">
+
+
+		<article class="main">
+			<h3 class="page_title">売上進捗</h3>
+
+			<a th:href="@{/setNoruma/input}">ノルマ設定</a>
+
+			<div style="width: 50%">
+				<canvas id="chart" height="800" width="1000"></canvas>
+			</div>
+			
+			
+			<input type="submit" value="button" onclick="requsetGetData()">
+			<input type="submit" value="button2" onclick="requsetGetData2()">
+			
+<!-- 			<div th:each="employee: ${empList}"> -->
+<!-- 			<a th:href="@{/employee/detail/}+${employee.empId}"  th:text="${employee.empName}"></a> -->
+			
+<!-- 			</div> -->
+		</article>
+	</div>
+
+
+</body>
+
+
+			<!-- もしくは<script src="Chart.min.js"></script> -->
+			<script type="text/javascript">
+  
+  
+			</script>
+			
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{layout :: layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div class="content">
+<article>
+			<h3>電子契約書登録完了画面</h3>
+			<div class="message">
+				<p>電子契約書登録処理が完了しました。</p>
+				<p>
+					<a th:href="@{/contract/list}">電子契約書一覧画面に戻る</a>
+				</p>
+			</div>
+		</article>
+	</div>
+</body>
+</html>

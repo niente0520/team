@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+
+</head>
+<body class="list">
+
+
+	<div class="content">
+
+
+		<article class="main">
+			<h3>電子契約書発行入力</h3>
+			<div class="update">
+				<form th:action="@{/contract/add/check}" method="post">
+
+
+					<div class="form">
+						<div class="label">顧客名：</div>
+						<div class="input">
+							<select name="customerId">
+									<option th:each="customer : ${customerList}"
+								th:if="${contract==null}"
+									th:value="${customer.customerId}"
+									th:text="${customer.customerName}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="form">
+						<div class="label">顧客ID検索：</div>
+						<div class="input">
+							<input type="text" id="costumerIdForSearch" onkeyup="searchCusIdKeyUp()"/>
+						</div>
+					</div>
+					<br /> 売上金額を入力してください
+					<div class="form">
+						<div class="label">売上金額：</div>
+						<div class="input">
+							<input type="text" name="totalPrice" th:if=${contract!=null}
+								th:value="${contract.totalPrice}" /> <input type="text"
+								name="totalPrice" th:if=${contract==null} />
+						</div>
+					</div>
+					<div class="form">
+						<div class="label"></div>
+						<div class="input">
+							<!-- 						    <input type="hidden" name="empId"  th:value="session.enp.empId" /> -->
+							<input type="hidden" name="empId" th:value="1" />
+							<input type="hidden" name="approval" th:value="0" />
+							<input type="hidden" name="deleteFlag" th:value="0" />
+							<input type="submit" value="登録" />
+						</div>
+					</div>
+				</form>
+				<form th:action="@{/contract/list}">
+					<div class="form">
+						<div class="label"></div>
+						<div class="input">
+							<input type="submit" value="戻る" />
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</article>
+	</div>
+
+</body>
+<script type="text/javascript" th:src="@{../../js/contract/customerSearch.js}"></script>
+</html>
