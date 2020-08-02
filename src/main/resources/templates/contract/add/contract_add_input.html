@@ -19,7 +19,7 @@
 					<div class="form">
 						<div class="label">顧客名：</div>
 						<div class="input">
-							<select name="customerId">
+							<select name="customerId" id="selectCustomerPullDown">
 									<option th:each="customer : ${customerList}"
 								th:if="${contract==null}"
 									th:value="${customer.customerId}"
@@ -33,6 +33,21 @@
 							<input type="text" id="costumerIdForSearch" onkeyup="searchCusIdKeyUp()"/>
 						</div>
 					</div>
+					
+					<div class="form">
+						<div class="label">顧客名前検索：</div>
+						<div class="input">
+							<input type="text" id="costumerNameForSearch" onkeyup="searchCusNameKeyUp()"/>
+						</div>
+					</div>
+					
+					<div class="form">
+						<div class="label">顧客住所検索：</div>
+						<div class="input">
+							<input type="text" id="costumerAddressForSearch" onkeyup="searchCusAddressKeyUp()"/>
+						</div>
+					</div>
+					
 					<br /> 売上金額を入力してください
 					<div class="form">
 						<div class="label">売上金額：</div>

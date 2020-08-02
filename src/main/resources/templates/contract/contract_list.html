@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+</head>
+<body class="list">
+	
+
+	<div class="content">
+	
+
+		<article class="main">
+			<h3 class="page_title">電子契約書一覧</h3>
+      
+       <form th:action="@{/contract/add/input}">
+       <input type="submit" value="契約書を発行する" />
+       </form>
+      
+      
+            
+            <div th:if=${contractList.size()!=0}>
+				<table class="emp_list_table">
+					<tr>
+						<th class="empId">ID</th>
+						<th class="empName">顧客名</th>
+						<th class="gender">担当者</th>
+						<th class="address">承認</th>
+						<th class="birthday">契約成立日</th>
+					</tr>
+					<tr th:each="contract: ${contractList}">
+						<td th:text=${contract.contractId}></td>
+						<td><a th:href="@{/contract/detail/}+${contract.contractId}" th:text=${contract.customer.customerName}></a></td>
+						<td th:text=${contract.employee.empName}></td>
+						<td th:if="${contract.approval==0}"  th:text="未承認"></td>
+						<td th:if="${contract.approval!=0}"  th:text="承認済み"></td>
+						<td th:text="${#dates.format(contract.contractDate,'yyyy/MM/dd')}"></td>
+					</tr>
+				</table>
+			</div>
+            
+     <a href="#"> &lt;&lt;  &lt;  1 2 3  &gt; &gt;&gt; </a>
+		</article>
+	</div>
+
+</body>
+</html>

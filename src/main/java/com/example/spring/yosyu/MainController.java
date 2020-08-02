@@ -47,6 +47,14 @@ public class MainController {
 		List<Employee> empList = createEmpData(10);
 		return getJsonEmpList(empList);
 	}
+	
+	@RequestMapping("/contract/list")
+	public String contractList(Model model) {
+
+		List<Customer> cusList = createCustomerData(10);
+		model.addAttribute("customerList", cusList);
+		return "/contract/contract_list";
+	}
 
 	@RequestMapping("/contract/add/input")
 	public String contractAddInput(Model model) {

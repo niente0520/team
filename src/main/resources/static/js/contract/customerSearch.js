@@ -1,13 +1,9 @@
 
 
-document.getElementById('costumerIdForSearch').onKeyUp = function(){
-alert("niente");
-	 const id = document.getElementById('costumerIdForSearch').value;
-	getCustomerData("/getCustomerData/"+id);
-}
-
 function searchCusIdKeyUp(){
 const id = document.getElementById('costumerIdForSearch').value;
+const selectCustomerPullDown = document.getElementById('selectCustomerPullDown');
+removeChildren(selectCustomerPullDown);
 	getCustomerData("/getCustomerData/"+id);
 }
 
@@ -18,12 +14,18 @@ function getCustomerData(requestURL){
     request.send(null);
     request.onload = function (event) {
     	let cusList = JSON.parse(request.responseText);
-    	alert(cusList);
        // Ajaxが正常終了した場合
        if (request.readyState === 4 && request.status === 200) {
        
-       //document.getElementById('costumerIdForSearch')の中身の要素を削除して動的にプルダウンを追加
-       //前回のajax課題からコピペして持ってくる
+       let month = document.getElementById('selectCustomerPullDown');
+document.createElement('option')
+for(let i = 0; i < cusList.length; i++){
+alert(cusList[i].customerId);
+  let option = document.createElement('option');
+  option.setAttribute('value', cusList[i].customerId);
+  option.innerHTML = cusList[i].customerName;
+  month.appendChild(option);
+};
        
           // 該当するデータが無かった場合
           if(!request.responseText){
@@ -39,4 +41,10 @@ function getCustomerData(requestURL){
     request.onerror = function (event) {
        alert("エラーが発生し、データが取得できませんでした");
     }
+}
+
+function removeChildren(obj){
+	for (var i =obj.childNodes.length-1; i>=0; i--) {
+	obj.removeChild(obj.childNodes[i]);
+}
 }
